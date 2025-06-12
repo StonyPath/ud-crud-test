@@ -1,0 +1,18 @@
+﻿using MediatR;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Application.Features.Customer.Commands;
+
+public record CreateCustomerCommand(
+     string FirstName,
+     string LastName,
+     DateTime DateOfBirth,
+     string CountryCode,
+     string PhoneNumber,
+     string Email,
+     string BankAccountNumber
+) : IRequest<Guid>;
