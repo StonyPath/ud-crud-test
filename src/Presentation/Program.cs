@@ -7,6 +7,8 @@ using Infrastructure.Persistence.Context;
 using Application.Behaviors;
 using Application.Features.Customer.Commands.Validators;
 using FluentValidation;
+using Domain.Aggregates.Customer.Entities;
+using Infrastructure.Persistence.Repositories;
 
 
 Log.Logger = new LoggerConfiguration()
@@ -36,7 +38,7 @@ builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavi
 builder.Services.AddValidatorsFromAssembly(typeof(CreateCustomerCommandValidator).Assembly);
 
 builder.Services.AddScoped<Domain.Aggregates.Customer.Services.ICustomerUniquenessCheckerService, Infrastructure.Services.CustomerUniquenessCheckerService>();
-builder.Services.AddScoped<Infrastructure.Persistence.Repositories.ICustomerRepository, Infrastructure.Persistence.Repositories.CustomerRepository>();
+builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 
 var app = builder.Build();
 
