@@ -1,4 +1,5 @@
 ﻿using Domain.Aggregates.Customer.Entities;
+using Domain.Aggregates.Customer.ValueObjects;
 using Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,10 +16,10 @@ public class CustomerRepository : ICustomerRepository
         await _context.SaveChangesAsync();
     }
 
-    public async Task<Customer> GetByIdAsync(Guid id)
+    public async Task<Customer?> GetByIdAsync(CustomerId id)
         => await _context.Customers.FirstOrDefaultAsync(c => c.Id == id);
 
-    public async Task<Customer> GetByEmailAsync(string email)
+    public async Task<Customer?> GetByEmailAsync(string email)
     => await _context.Customers.FirstOrDefaultAsync(x => x.Email.Value.ToLower() == email.ToLower());
 
     public async Task<(List<Customer> customers, int totalCount)> GetAllAsync(int take, int skip)

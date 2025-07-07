@@ -5,8 +5,8 @@ namespace Domain.Aggregates.Customer.Entities;
 public interface ICustomerRepository
 {
     Task AddAsync(Customer customer);
-    Task<Customer> GetByIdAsync(Guid id);
-    Task<Customer> GetByEmailAsync(string email);
+    Task<Customer?> GetByIdAsync(CustomerId id);
+    Task<Customer?> GetByEmailAsync(string email);
     /// <summary>
     /// 
     /// </summary>

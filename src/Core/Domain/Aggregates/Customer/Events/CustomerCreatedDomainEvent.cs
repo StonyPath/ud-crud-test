@@ -1,14 +1,10 @@
-﻿using Domain.SeedWork;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Domain.Aggregates.Customer.ValueObjects;
+using Domain.SeedWork;
 
 namespace Domain.Aggregates.Customer.Events;
 
 public class CustomerCreatedDomainEvent : DomainEventBase
 {
-    public Guid CustomerId { get; }
-    public CustomerCreatedDomainEvent(Guid customerId) => CustomerId = customerId;
+    public CustomerId CustomerId { get; }
+    public CustomerCreatedDomainEvent(CustomerId customerId) => CustomerId = customerId;
 }

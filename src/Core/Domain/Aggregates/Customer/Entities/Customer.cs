@@ -3,15 +3,10 @@ using Domain.Aggregates.Customer.Rules;
 using Domain.Aggregates.Customer.Services;
 using Domain.Aggregates.Customer.ValueObjects;
 using Domain.SeedWork;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.Aggregates.Customer.Entities;
 
-public class Customer : AggregateRoot<Guid>, ISoftDelete
+public class Customer : AggregateRoot<CustomerId>, ISoftDelete
 {
     public FirstName FirstName { get; private set; }
     public LastName LastName { get; private set; }
@@ -21,15 +16,14 @@ public class Customer : AggregateRoot<Guid>, ISoftDelete
     public BankAccountNumber BankAccountNumber { get; private set; }
     public bool IsDeleted { get; private set; }
 
-    private Customer(
-        FirstName firstName,
-        LastName lastName,
-        DateOfBirth dateOfBirth,
-        PhoneNumber phoneNumber,
-        Email email,
-        BankAccountNumber bankAccountNumber)
+    private Customer(FirstName firstName,
+                     LastName lastName,
+                     DateOfBirth dateOfBirth,
+                     PhoneNumber phoneNumber,
+                     Email email,
+                     BankAccountNumber bankAccountNumber)
     {
-        Id = Guid.NewGuid();
+        Id = new CustomerId(Guid.NewGuid());
         FirstName = firstName;
         LastName = lastName;
         DateOfBirth = dateOfBirth;
@@ -39,14 +33,13 @@ public class Customer : AggregateRoot<Guid>, ISoftDelete
         IsDeleted = false;
     }
 
-    public static Customer Create(
-        FirstName firstName,
-        LastName lastName,
-        DateOfBirth dateOfBirth,
-        PhoneNumber phoneNumber,
-        Email email,
-        BankAccountNumber bankAccountNumber,
-        ICustomerUniquenessCheckerService uniquenessChecker)
+    public static Customer Create(FirstName firstName,
+                                  LastName lastName,
+                                  DateOfBirth dateOfBirth,
+                                  PhoneNumber phoneNumber,
+                                  Email email,
+                                  BankAccountNumber bankAccountNumber,
+                                  ICustomerUniquenessCheckerService uniquenessChecker)
     {
         // Enforce business rules
         var emailRule = new CustomerEmailMustBeUniqueRule(email, uniquenessChecker);
