@@ -10,7 +10,7 @@ public class Order : AggregateRoot<OrderId>
     private readonly HashSet<LineItem.Entities.LineItem> _lineItems = [];
     private Order() { }
 
-    public IReadOnlyList<LineItem.Entities.LineItem> LineItems => [.. _lineItems];
+    public IReadOnlyCollection<LineItem.Entities.LineItem> LineItems => _lineItems;
 
     public CustomerId CustomerId { get; private set; }
 

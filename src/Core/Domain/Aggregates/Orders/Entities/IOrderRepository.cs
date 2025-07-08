@@ -1,9 +1,12 @@
-﻿using Domain.Aggregates.LineItem.ValueObjects;
+﻿using Domain.Aggregates.Customer.ValueObjects;
+using Domain.Aggregates.LineItem.ValueObjects;
 using Domain.Aggregates.Orders.ValueObjects;
+using Domain.SeedWork;
 
 namespace Domain.Aggregates.Orders.Entities;
-public interface IOrderRepository
+public interface IOrderRepository : IBaseRepository<Order>
 {
-    Task<Order?> GetByIdAsync(OrderId id);
+    //Task<Order?> GetByIdAsync(OrderId id);
     Task RemoveLineItemAsync(OrderId orderId, LineItemId lineItemId);
+    Task<OrderId> CreateOrder(CustomerId customerId);
 }

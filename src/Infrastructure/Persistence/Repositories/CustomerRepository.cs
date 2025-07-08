@@ -5,19 +5,19 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistence.Repositories;
 
-public class CustomerRepository : ICustomerRepository
+public class CustomerRepository : BaseRepository<Customer>, ICustomerRepository
 {
     private readonly AppDbContext _context;
-    public CustomerRepository(AppDbContext context) => _context = context;
+    public CustomerRepository(AppDbContext context) : base(context) => _context = context;
 
-    public async Task AddAsync(Customer customer)
-    {
-        await _context.Customers.AddAsync(customer);
-        await _context.SaveChangesAsync();
-    }
+    //public async Task AddAsync(Customer customer)
+    //{
+    //    await _context.Customers.AddAsync(customer);
+    //    await _context.SaveChangesAsync();
+    //}
 
-    public async Task<Customer?> GetByIdAsync(CustomerId id)
-        => await _context.Customers.FirstOrDefaultAsync(c => c.Id == id);
+    //public async Task<Customer?> GetByIdAsync(CustomerId id)
+    //    => await _context.Customers.FirstOrDefaultAsync(c => c.Id == id);
 
     public async Task<Customer?> GetByEmailAsync(string email)
     => await _context.Customers.FirstOrDefaultAsync(x => x.Email.Value.ToLower() == email.ToLower());
@@ -33,11 +33,11 @@ public class CustomerRepository : ICustomerRepository
         return (customers, totalCount);
     }
 
-    public async Task UpdateAsync(Customer customer)
-    {
-        _context.Customers.Update(customer);
-        await _context.SaveChangesAsync();
-    }
+    //public async Task UpdateAsync(Customer customer)
+    //{
+    //    _context.Customers.Update(customer);
+    //    await _context.SaveChangesAsync();
+    //}
 
     public async Task SaveChangesAsync() => await _context.SaveChangesAsync();
 }

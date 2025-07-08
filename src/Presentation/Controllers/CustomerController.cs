@@ -17,13 +17,14 @@ namespace Presentation.Controllers;
 public class CustomerController : ControllerBase
 {
     private readonly IMediator _mediator;
+
     public CustomerController(IMediator mediator) => _mediator = mediator;
 
     [HttpPost]
     public async Task<ActionResult<CustomerDto>> CreateCustomer([FromBody] CreateCustomerCommand command)
     {
         var customerId = await _mediator.Send(command);
-        return CreatedAtAction(nameof(GetCustomerById), new { customerId = customerId }, customerId);
+        return CreatedAtAction(nameof(GetCustomer), new { customerId }, customerId);
     }
 
     [HttpPut("{customerId:guid}")]
@@ -53,8 +54,8 @@ public class CustomerController : ControllerBase
         return Ok(result);
     }
 
-    [HttpGet("GetCustomerById{customerId:guid}")]
-    public async Task<ActionResult<CustomerDto>> GetCustomerById(Guid customerId)
+    [HttpGet("GetCustomer")]
+    public async Task<ActionResult<CustomerDto>> GetCustomer(Guid customerId)
     {
         CustomerId cId = new(customerId);
         var query = new GetCustomerByIdQuery(cId);

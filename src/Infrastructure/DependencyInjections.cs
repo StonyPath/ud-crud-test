@@ -1,5 +1,6 @@
 ﻿using Domain.Aggregates.Customer.Entities;
 using Domain.Aggregates.Orders.Entities;
+using Domain.SeedWork;
 using Infrastructure.Persistence.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -8,6 +9,7 @@ public static class DependencyInjections
 {
     public static IServiceCollection InfrastructureDI(this IServiceCollection services)
     {
+        services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
         services.AddScoped<ICustomerRepository, CustomerRepository>();
         services.AddScoped<IOrderRepository, OrderRepository>();
 
