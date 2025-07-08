@@ -1,5 +1,4 @@
 ﻿using Domain.Aggregates.Customer.Entities;
-using Domain.Aggregates.Customer.ValueObjects;
 using Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 
@@ -22,22 +21,20 @@ public class CustomerRepository : BaseRepository<Customer>, ICustomerRepository
     public async Task<Customer?> GetByEmailAsync(string email)
     => await _context.Customers.FirstOrDefaultAsync(x => x.Email.Value.ToLower() == email.ToLower());
 
-    public async Task<(List<Customer> customers, int totalCount)> GetAllAsync(int take, int skip)
-    {
-        var query = _context.Customers.AsQueryable();
-        var totalCount = await query.CountAsync();
-        var customers = await query.Skip((skip - 1) * take)
-                                   .Take(take)
-                                   .ToListAsync();
+    //public async Task<(List<Customer> customers, int totalCount)> GetAllAsync(int take, int skip)
+    //{
+    //    var query = _context.Customers.AsQueryable();
+    //    var totalCount = await query.CountAsync();
+    //    var customers = await query.Skip((skip - 1) * take)
+    //                               .Take(take)
+    //                               .ToListAsync();
 
-        return (customers, totalCount);
-    }
+    //    return (customers, totalCount);
+    //}
 
     //public async Task UpdateAsync(Customer customer)
     //{
     //    _context.Customers.Update(customer);
     //    await _context.SaveChangesAsync();
     //}
-
-    public async Task SaveChangesAsync() => await _context.SaveChangesAsync();
 }

@@ -14,7 +14,6 @@ public interface ICustomerRepository : IBaseRepository<Customer>
     /// <param name="take">PageSize</param>
     /// <param name="skip">PageNumber </param>
     /// <returns></returns>
-    Task<(List<Customer> customers, int totalCount)> GetAllAsync(int take, int skip);
+    //Task<(List<Customer> customers, int totalCount)> GetAllAsync(int take, int skip);
     //Task UpdateAsync(Customer customer);
-    Task SaveChangesAsync();
 }

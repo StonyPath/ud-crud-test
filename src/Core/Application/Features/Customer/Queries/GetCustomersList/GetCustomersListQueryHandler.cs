@@ -17,7 +17,7 @@ public class GetCustomersListQueryHandler : IRequestHandler<GetCustomersListQuer
     {
         var customersInfo = await _customerRepository.GetAllAsync(request.PageSize,request.PageNumber);
 
-        var customerDtos = customersInfo.customers.Select(customer => new CustomerDto
+        var customerDtos = customersInfo.entities.Select(customer => new CustomerDto
         {
             Id = customer.Id,
             FirstName = customer.FirstName.Value,

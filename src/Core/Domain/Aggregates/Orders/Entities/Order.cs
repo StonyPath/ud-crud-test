@@ -27,10 +27,12 @@ public class Order : AggregateRoot<OrderId>
         };
     }
 
-    public void Add(ProductId productId, Money price)
+    public LineItemId AddLineItem(ProductId productId, Money price)
     {
         LineItem.Entities.LineItem lineItem = new(Id, productId, price);
         _lineItems.Add(lineItem);
+
+        return lineItem.Id;
     }
 
     public void RemoveLineItem(LineItemId lineItemId)

@@ -10,4 +10,15 @@ public class Product : AggregateRoot<ProductId>
     public string Name { get; private set; }
     public Money Price { get; private set; }
     public SKU Sku { get; private set; }
+
+    public static Product Create(string name, Money price, SKU sku)
+    {
+        return new Product()
+        {
+            Id = new ProductId(Guid.NewGuid()),
+            Name = name,
+            Price = price,
+            Sku = sku
+        };
+    }
 }

@@ -1,8 +1,7 @@
-﻿using Domain.Aggregates.LineItem.ValueObjects;
-using Domain.Aggregates.Orders.Entities;
+﻿using Domain.Aggregates.Orders.Entities;
 using MediatR;
 
-namespace Application.Features.LineItem.Commands.RemoveLineItem;
+namespace Application.Features.Order.Commands.RemoveLineItem;
 
 public class RemoveLineItemCommandHandler : IRequestHandler<RemoveLineItemCommand>
 {

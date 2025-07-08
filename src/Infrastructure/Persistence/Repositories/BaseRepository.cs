@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
 namespace Infrastructure.Persistence.Repositories;
+
 public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class
 {
     protected readonly AppDbContext _dbContext;
@@ -15,8 +16,16 @@ public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : 
         _dbSet = dbContext.Set<TEntity>();
     }
 
-    public async Task<IReadOnlyList<TEntity>> GetAllAsync(CancellationToken cancellationToken = default)
-        => await _dbSet.ToListAsync(cancellationToken);
+    public async Task<(IReadOnlyList<TEntity> entities, int totalCount)> GetAllAsync(int take, int skip, CancellationToken cancellationToken = default)
+    {
+        var query = _dbSet.AsQueryable();
+        var totalCount = await query.CountAsync();
+        var entities = await query.Skip((skip - 1) * take)
+                                   .Take(take)
+                                   .ToListAsync();
+
+        return (entities, totalCount);
+    }
 
     public async Task<IReadOnlyList<TEntity>> GetAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default)
         => await _dbSet.Where(predicate).ToListAsync(cancellationToken);
@@ -102,4 +111,6 @@ public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : 
         await DeleteAsync(entity);
         return await Task.FromResult(true);
     }
+
+    public async Task SaveChangesAsync() => await _dbContext.SaveChangesAsync();
 }

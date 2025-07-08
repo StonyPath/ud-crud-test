@@ -2,6 +2,6 @@
 using Domain.Aggregates.Orders.ValueObjects;
 using MediatR;
 
-namespace Application.Features.LineItem.Commands.RemoveLineItem;
+namespace Application.Features.Order.Commands.RemoveLineItem;
 
 public record RemoveLineItemCommand(OrderId OrderId, LineItemId LineItemId) : IRequest { }

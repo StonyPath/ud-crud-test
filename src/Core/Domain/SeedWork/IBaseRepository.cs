@@ -4,7 +4,13 @@ namespace Domain.SeedWork;
 
 public interface IBaseRepository<TEntity>
 {
-    Task<IReadOnlyList<TEntity>> GetAllAsync(CancellationToken cancellationToken = default);
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="take">PageSize</param>
+    /// <param name="skip">PageNumber </param>
+    /// <returns></returns>
+    Task<(IReadOnlyList<TEntity> entities, int totalCount)> GetAllAsync(int take, int skip, CancellationToken cancellationToken = default);
     Task<IReadOnlyList<TEntity>> GetAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default);
     Task<IReadOnlyList<TEntity>> GetAsync(Expression<Func<TEntity, bool>> predicate = null,
                                           Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
@@ -36,4 +42,5 @@ public interface IBaseRepository<TEntity>
     /// <param name="entity"></param>
     /// <returns></returns>
     Task<bool> DeleteAsync(TEntity entity);
+    Task SaveChangesAsync();
 }

@@ -2,7 +2,7 @@
 using Domain.Aggregates.Orders.Entities;
 using MediatR;
 
-namespace Application.Features.Order.Queris;
+namespace Application.Features.Order.Queris.GetOrderById;
 public class GetOrderByIdHandler : IRequestHandler<GetOrderByIdQuery, OrderDto?>
 {
     private readonly IOrderRepository _orderRepository;

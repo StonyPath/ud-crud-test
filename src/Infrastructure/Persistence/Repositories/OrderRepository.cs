@@ -21,6 +21,14 @@ public class OrderRepository : BaseRepository<Order>, IOrderRepository
         return newOrder.Id;
     }
 
+    public async Task<Order?> GetOrderLineItems(OrderId orderId)
+    {
+        Order? order = await _context.Orders
+                                     .Include(o => o.LineItems)
+                                     .SingleOrDefaultAsync(o => o.Id == orderId);
+        return order;
+    }
+
     public async Task RemoveLineItemAsync(OrderId orderId, LineItemId lineItemId)
     {
         Order? order = await _context.Orders
