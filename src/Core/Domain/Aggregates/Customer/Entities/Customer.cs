@@ -16,22 +16,7 @@ public class Customer : AggregateRoot<CustomerId>, ISoftDelete
     public BankAccountNumber BankAccountNumber { get; private set; }
     public bool IsDeleted { get; private set; }
 
-    private Customer(FirstName firstName,
-                     LastName lastName,
-                     DateOfBirth dateOfBirth,
-                     PhoneNumber phoneNumber,
-                     Email email,
-                     BankAccountNumber bankAccountNumber)
-    {
-        Id = new CustomerId(Guid.NewGuid());
-        FirstName = firstName;
-        LastName = lastName;
-        DateOfBirth = dateOfBirth;
-        PhoneNumber = phoneNumber;
-        Email = email;
-        BankAccountNumber = bankAccountNumber;
-        IsDeleted = false;
-    }
+    private Customer() { }
 
     public static Customer Create(FirstName firstName,
                                   LastName lastName,
@@ -50,7 +35,16 @@ public class Customer : AggregateRoot<CustomerId>, ISoftDelete
 
         if (personalInfoRule.IsBroken()) throw new Exception(personalInfoRule.Message);
 
-        var customer = new Customer(firstName, lastName, dateOfBirth, phoneNumber, email, bankAccountNumber);
+        var customer = new Customer()
+        {
+            Id = new CustomerId(Guid.NewGuid()),
+            FirstName = firstName,
+            LastName = lastName,
+            DateOfBirth = dateOfBirth,
+            PhoneNumber = phoneNumber,
+            Email = email,
+            BankAccountNumber = bankAccountNumber
+        };
         customer.AddDomainEvent(new CustomerCreatedDomainEvent(customer.Id));
         return customer;
     }

@@ -5,7 +5,10 @@ namespace Domain.Aggregates.Customer.ValueObjects;
 
 public class BankAccountNumber : ValueObject
 {
+    private BankAccountNumber() { }
+
     public string Value { get; }
+
     public BankAccountNumber(string accountNumber)
     {
         if (string.IsNullOrWhiteSpace(accountNumber))

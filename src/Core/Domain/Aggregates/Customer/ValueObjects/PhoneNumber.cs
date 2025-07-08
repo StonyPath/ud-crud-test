@@ -5,8 +5,12 @@ namespace Domain.Aggregates.Customer.ValueObjects;
 
 public class PhoneNumber : ValueObject
 {
+    private PhoneNumber() { }
+
     public string CountryCode { get; }
+
     public string Number { get; }
+
     public PhoneNumber(string countryCode, string number)
     {
         if (string.IsNullOrWhiteSpace(countryCode))
@@ -23,6 +27,7 @@ public class PhoneNumber : ValueObject
         CountryCode = countryCode;
         Number = number;
     }
+
     protected override IEnumerable<object> GetAtomicValues()
     {
         yield return CountryCode;

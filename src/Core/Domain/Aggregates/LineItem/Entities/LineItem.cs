@@ -7,7 +7,9 @@ namespace Domain.Aggregates.LineItem.Entities;
 
 public class LineItem : AggregateRoot<LineItemId>
 {
-    internal LineItem(OrderId orderId, ProductId productId, Money price)
+    private LineItem() { }
+
+    public LineItem(OrderId orderId, ProductId productId, Money price)
     {
         Id = new LineItemId(Guid.NewGuid());
         OrderId = orderId;

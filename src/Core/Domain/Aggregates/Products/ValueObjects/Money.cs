@@ -4,6 +4,8 @@ namespace Domain.Aggregates.Products.ValueObjects;
 
 public class Money : ValueObject
 {
+    private Money() { }
+
     public string Currency { get; }
     public decimal Amount { get; }
     public Money(string currency, decimal amount)

@@ -4,7 +4,10 @@ namespace Domain.Aggregates.Customer.ValueObjects;
 
 public class DateOfBirth : ValueObject
 {
+    private DateOfBirth() { }
+
     public DateTime Value { get; }
+
     public DateOfBirth(DateTime dateOfBirth)
     {
         var age = CalculateAge(dateOfBirth, DateTime.Today);
