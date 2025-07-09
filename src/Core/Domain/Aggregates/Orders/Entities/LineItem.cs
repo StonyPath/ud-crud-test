@@ -1,9 +1,8 @@
-﻿using Domain.Aggregates.LineItem.ValueObjects;
-using Domain.Aggregates.Orders.ValueObjects;
+﻿using Domain.Aggregates.Orders.ValueObjects;
 using Domain.Aggregates.Products.ValueObjects;
 using Domain.SeedWork;
 
-namespace Domain.Aggregates.LineItem.Entities;
+namespace Domain.Aggregates.Orders.Entities;
 
 public class LineItem : AggregateRoot<LineItemId>
 {

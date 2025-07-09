@@ -1,5 +1,4 @@
-﻿using Domain.Aggregates.LineItem.ValueObjects;
-using Domain.Aggregates.Orders.ValueObjects;
+﻿using Domain.Aggregates.Orders.ValueObjects;
 using MediatR;
 
 namespace Application.Features.Order.Commands.RemoveLineItem;

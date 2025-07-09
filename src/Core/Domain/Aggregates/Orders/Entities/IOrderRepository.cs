@@ -1,5 +1,4 @@
 ﻿using Domain.Aggregates.Customer.ValueObjects;
-using Domain.Aggregates.LineItem.ValueObjects;
 using Domain.Aggregates.Orders.ValueObjects;
 using Domain.SeedWork;
 

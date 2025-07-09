@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Domain.SeedWork;
+﻿namespace Domain.SeedWork;
 
 public abstract class DomainEventBase
 {
+    public Guid Id { get; }
     public DateTime OccurredOn { get; protected set; } = DateTime.UtcNow;
+    protected DomainEventBase() => Id = Guid.NewGuid();
 }

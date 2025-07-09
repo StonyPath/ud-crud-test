@@ -1,5 +1,5 @@
-﻿using Domain.Aggregates.LineItem.ValueObjects;
-using Domain.Aggregates.Orders.Entities;
+﻿using Domain.Aggregates.Orders.Entities;
+using Domain.Aggregates.Orders.ValueObjects;
 using MediatR;
 
 namespace Application.Features.Order.Commands.CreateLineItem;

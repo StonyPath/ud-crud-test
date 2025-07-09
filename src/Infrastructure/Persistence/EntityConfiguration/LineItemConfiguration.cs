@@ -1,5 +1,5 @@
-﻿using Domain.Aggregates.LineItem.Entities;
-using Domain.Aggregates.LineItem.ValueObjects;
+﻿using Domain.Aggregates.Orders.Entities;
+using Domain.Aggregates.Orders.ValueObjects;
 using Domain.Aggregates.Products.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;

@@ -5,7 +5,6 @@ using Application.Features.Order.Queris.GetOrderLineItems;
 using Application.Features.Order.Queris.GetOrdersList;
 using Application.Features.Product.Queries.GetProductsList;
 using Application.Models;
-using Domain.Aggregates.LineItem.ValueObjects;
 using Domain.Aggregates.Orders.ValueObjects;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
