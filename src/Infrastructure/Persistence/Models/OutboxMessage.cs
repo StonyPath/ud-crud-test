@@ -1,4 +1,4 @@
-﻿namespace Infrastructure.Persistence;
+﻿namespace Infrastructure.Persistence.Models;
 
 public sealed class OutboxMessage
 {

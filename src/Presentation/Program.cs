@@ -12,6 +12,7 @@ using Application.Features.Customer.Commands.CreateCustomer;
 using Application.Features.Customer.Queries.GetCustomersList;
 using Infrastructure;
 using Infrastructure.Persistence.Interceptors;
+using Infrastructure.BackgroundJobs;
 
 
 Log.Logger = new LoggerConfiguration()
@@ -43,6 +44,7 @@ builder.Services.AddValidatorsFromAssembly(typeof(CreateCustomerCommandValidator
 
 builder.Services.AddScoped<Domain.Aggregates.Customer.Services.ICustomerUniquenessCheckerService, Infrastructure.Services.CustomerUniquenessCheckerService>();
 builder.Services.InfrastructureDI();
+builder.Services.AddHostedService<ProcessOutboxMessageJob>();
 
 var app = builder.Build();
 

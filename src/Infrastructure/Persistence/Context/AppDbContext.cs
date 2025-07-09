@@ -2,6 +2,7 @@
 using Domain.Aggregates.Orders.Entities;
 using Domain.Aggregates.Products.Entities;
 using Domain.SeedWork;
+using Infrastructure.Persistence.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Reflection;

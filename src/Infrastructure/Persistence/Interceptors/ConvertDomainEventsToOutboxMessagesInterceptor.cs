@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Domain.SeedWork;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Newtonsoft.Json;
+using Infrastructure.Persistence.Models;
 
 namespace Infrastructure.Persistence.Interceptors;
 
